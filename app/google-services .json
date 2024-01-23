@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "678144140168",
+    "project_id": "vceas-99d2f",
+    "storage_bucket": "vceas-99d2f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:678144140168:android:0c36f7fad3f17a9d89903d",
+        "android_client_info": {
+          "package_name": "com.example.sos2"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBoS3rUd9Nl9XAMzZu5170cE-sS4koyXn0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
