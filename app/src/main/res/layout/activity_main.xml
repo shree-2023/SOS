@@ -11,10 +11,11 @@
     <!--on below line we are adding an image view-->
 
     <!--on below line we are creating progress bar-->
+
     <ImageView
         android:id="@+id/idIVLogo"
-        android:layout_width="1000dp"
-        android:layout_height="1500dp"
+        android:layout_width="1500dp"
+        android:layout_height="2000dp"
         android:layout_centerInParent="true"
         android:layout_marginStart="25dp"
         android:layout_marginTop="25dp"

@@ -327,14 +327,13 @@
 package com.example.sos2;
 
 import android.app.Dialog;
-import android.content.BroadcastReceiver;
+//import android.content.BroadcastReceiver;
 import android.content.SharedPreferences;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
+//import android.content.IntentFilter;
 import android.os.Bundle;
-import android.telephony.SmsManager;
-import android.util.Log;
+//import android.telephony.SmsManager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -345,6 +344,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.sos2.model.Contact_Model;
+import com.example.sos2.recyclerViewController.ContactAdapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -357,8 +358,8 @@ import java.util.ArrayList;
 public class Contact extends AppCompatActivity {
 
     private DatabaseReference databaseReference;
-    private FloatingActionButton btnAddContact;
-    private Button btnSendMessage;
+    public FloatingActionButton btnAddContact;
+    //private Button btnSendMessage;
     private ContactAdapter adapter;
     public ArrayList<Contact_Model> arrContact = new ArrayList<>();
     private RecyclerView recyclerView;
@@ -373,21 +374,17 @@ public class Contact extends AppCompatActivity {
         databaseReference = FirebaseDatabase.getInstance().getReference("contacts");
 
 
-
         recyclerView = findViewById(R.id.recyclercontact);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter = new ContactAdapter(this, arrContact);
         recyclerView.setAdapter(adapter);
 
         btnAddContact = findViewById(R.id.floatingActionButton2);
-    //   btnSendMessage = findViewById(R.id.btnSendMessage);
-    Button GotoReg=findViewById(R.id.btnreg);
-        GotoReg.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i=new Intent(Contact.this, Home.class);
-                startActivity(i);
-            }
+        //   btnSendMessage = findViewById(R.id.btnSendMessage);
+        Button GotoReg = findViewById(R.id.btnreg);
+        GotoReg.setOnClickListener(v -> {
+            Intent i = new Intent(Contact.this, Home.class);
+            startActivity(i);
         });
 
         btnAddContact.setOnClickListener(new View.OnClickListener() {
@@ -418,85 +415,48 @@ public class Contact extends AppCompatActivity {
             }
         });
 
-
-
-        if ("SEND_MESSAGES".equals(getIntent().getAction())) {
-            // If the activity was started with the SEND_MESSAGES action, show the Send Messages button
-            btnSendMessage.setVisibility(View.VISIBLE);
-        }
-
-        registerReceiver(sentReceiver, new IntentFilter("SMS_SENT"));
     }
-
 //    DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("users/userId1");
 
 
-    private void showDialogToAddContact() {
-        Dialog dialog = new Dialog(Contact.this);
-        dialog.setContentView(R.layout.update_contact);
+        private void showDialogToAddContact() {
+            Dialog dialog = new Dialog(Contact.this);
+            dialog.setContentView(R.layout.update_contact);
 
-        EditText editText = dialog.findViewById(R.id.editName);
-        EditText editText1 = dialog.findViewById(R.id.editNum);
-        Button btnAdd = dialog.findViewById(R.id.btnadd);
+            EditText editText = dialog.findViewById(R.id.editName);
+            EditText editText1 = dialog.findViewById(R.id.editNum);
+            Button btnAdd = dialog.findViewById(R.id.btnadd);
 
-        btnAdd.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String name = editText.getText().toString();
-                String number = editText1.getText().toString();
+            btnAdd.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    String name = editText.getText().toString();
+                    String number = editText1.getText().toString();
 
-                if (!name.isEmpty() && !number.isEmpty()) {
-                    String contactId = databaseReference.push().getKey();
-                    Contact_Model contact = new Contact_Model(name, number);
-                    databaseReference.child(contactId).setValue(contact);
-                    arrContact.add(contact);
-                    adapter.notifyItemInserted(arrContact.size() - 1);
-                    recyclerView.scrollToPosition(arrContact.size() - 1);
-                    // Save the contact information in SharedPreferences
-                    SharedPreferences sharedPreferences = getSharedPreferences("MyContacts", Context.MODE_PRIVATE);
-                    SharedPreferences.Editor editor = sharedPreferences.edit();
-                    editor.putString("SAVED_CONTACT_NUMBER", number);
-                    editor.apply();
-                    dialog.dismiss();
-                    //Log.d("MyTag", arrContact.get(0).getName());
-                } else {
-                    Toast.makeText(Contact.this, "Please enter the contact name and number", Toast.LENGTH_SHORT).show();
+                    if (!name.isEmpty() && !number.isEmpty()) {
+                        String contactId = databaseReference.push().getKey();
+                        Contact_Model contact = new Contact_Model(name, number);
+                        databaseReference.child(contactId).setValue(contact);
+                        arrContact.add(contact);
+                        adapter.notifyItemInserted(arrContact.size() - 1);
+                        recyclerView.scrollToPosition(arrContact.size() - 1);
+                        // Save the contact information in SharedPreferences
+                        SharedPreferences sharedPreferences = getSharedPreferences("MyContacts", Context.MODE_PRIVATE);
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        editor.putString("SAVED_CONTACT_NUMBER", number);
+                        editor.apply();
+                        dialog.dismiss();
+                        //Log.d("MyTag", arrContact.get(0).getName());
+                    } else {
+                        Toast.makeText(Contact.this, "Please enter the contact name and number", Toast.LENGTH_SHORT).show();
+                    }
                 }
-            }
-        });
+            });
 
-        dialog.show();
-    }
-
-    private final BroadcastReceiver sentReceiver = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            switch (getResultCode()) {
-                case AppCompatActivity.RESULT_OK:
-                    Toast.makeText(context, "SMS sent successfully!", Toast.LENGTH_SHORT).show();
-                    break;
-                case SmsManager.RESULT_ERROR_GENERIC_FAILURE:
-                    Toast.makeText(context, "SMS sending failed.", Toast.LENGTH_SHORT).show();
-                    break;
-                case SmsManager.RESULT_ERROR_NO_SERVICE:
-                    Toast.makeText(context, "No service available.", Toast.LENGTH_SHORT).show();
-                    break;
-                case SmsManager.RESULT_ERROR_NULL_PDU:
-                    Toast.makeText(context, "Null PDU.", Toast.LENGTH_SHORT).show();
-                    break;
-                case SmsManager.RESULT_ERROR_RADIO_OFF:
-                    Toast.makeText(context, "Radio off.", Toast.LENGTH_SHORT).show();
-                    break;
-            }
+            dialog.show();
         }
-    };
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        unregisterReceiver(sentReceiver);
     }
-}
 
 
 

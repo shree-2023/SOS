@@ -1,4 +1,4 @@
-package com.example.sos2;
+package com.example.sos2.recyclerViewController;
 
 import java.util.ArrayList;
 
@@ -20,11 +20,15 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import  androidx.recyclerview.widget.RecyclerView;
 
+import com.example.sos2.model.Contact_Model;
+import com.example.sos2.R;
+import com.example.sos2.SendVoicemsg;
+
 public class ContactAdapter  extends RecyclerView.Adapter<ContactAdapter.ViewHolder>{
 
     Context context;
     ArrayList<Contact_Model> arrContact;
-    ContactAdapter(Context context,ArrayList<Contact_Model> arrContact){
+    public ContactAdapter(Context context, ArrayList<Contact_Model> arrContact){
         this.context=context;
         this.arrContact=arrContact;
     }

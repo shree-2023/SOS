@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Aboutus"
+    android:background="@drawable/imag12contactus">
+
+    <TextView
+        android:id="@+id/actionBarTitle"
+        android:layout_width="417dp"
+        android:layout_height="32dp"
+        android:layout_gravity="center_vertical"
+        android:background="@color/light_blue_900"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="0dp"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/actionBarIcon"
+        android:layout_width="37dp"
+        android:layout_height="31dp"
+        android:layout_gravity="center_vertical"
+        android:background="@drawable/arrow"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:drawable/divider_horizontal_dark"
+        android:paddingLeft="20dp"
+        android:paddingTop="10dp"
+        android:paddingRight="10dp"
+        android:paddingBottom="10dp"
+        android:text="About Us"
+        android:textColor="#2196F3"
+        android:textColorLink="#FFFFFF"
+        android:textSize="36sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.465"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.092" />
+
+    <TextView
+        android:id="@+id/textViewDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:text="The SOS(Save Our Souls)mainly used in
+emergency situation, when your travelling alone it
+helps ,to contact people. The basic problem with the SOS application is that they are not always able to
+respond swiftly to distress calls. These limitations include not knowing the
+location of the crime and not knowing the crime is occurring at all: it is difficult
+for the victim to call the police confidently and quietly. To aid in the removal
+of these prohibitions. This article presents the safety application to contact the
+people using voice message. For the people is in dangerous to travel alone at
+night in today's atmosphere, Identifying and utilizing resources to get you out
+of unsafe situations is an effective way to reduce your risks of being a victim of
+violent crime. A safety application on your phone can help you lower your risk
+and receive help when you need it. Unlike other applications that can only
+be used in an emergency or in a dangerous circumstance, this application may
+be used for safety or precautionary purposes. Prevention, as the adage goes, is
+preferable than cure."
+        android:textSize="16sp"
+
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="201dp" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
