@@ -6,7 +6,28 @@
     android:layout_height="match_parent"
     tools:context=".Register"
     android:background="@drawable/imag12contactus">
+    <TextView
+        android:id="@+id/actionBarTitle"
+        android:layout_width="417dp"
+        android:layout_height="32dp"
+        android:layout_gravity="center_vertical"
+        android:background="@color/light_blue_900"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="0dp"
+        tools:ignore="MissingConstraints" />
 
+    <TextView
+        android:id="@+id/actionBarIcon1"
+        android:layout_width="37dp"
+        android:layout_height="31dp"
+        android:layout_gravity="center_vertical"
+        android:background="@drawable/arrow"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
@@ -38,6 +59,7 @@
         android:drawablePadding="10dp"
         android:ems="10"
         android:inputType="text"
+        android:minHeight="48dp"
         android:paddingLeft="20dp"
         android:paddingTop="10dp"
         android:paddingRight="10dp"

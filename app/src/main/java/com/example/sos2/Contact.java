@@ -356,7 +356,8 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 public class Contact extends AppCompatActivity {
-
+    private boolean isUpdating = false;
+    private Contact_Model existingContact;
     private DatabaseReference databaseReference;
     public FloatingActionButton btnAddContact;
     //private Button btnSendMessage;
@@ -426,7 +427,12 @@ public class Contact extends AppCompatActivity {
             EditText editText = dialog.findViewById(R.id.editName);
             EditText editText1 = dialog.findViewById(R.id.editNum);
             Button btnAdd = dialog.findViewById(R.id.btnadd);
-
+            // Check if updating an existing contact
+            if (isUpdating) {
+                // Set values based on the contact being updated
+                editText.setText(existingContact.getName());
+                editText1.setText(existingContact.getNumber());
+            }
             btnAdd.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -434,12 +440,21 @@ public class Contact extends AppCompatActivity {
                     String number = editText1.getText().toString();
 
                     if (!name.isEmpty() && !number.isEmpty()) {
-                        String contactId = databaseReference.push().getKey();
-                        Contact_Model contact = new Contact_Model(name, number);
+                        if (isUpdating) {
+                            // Update existing contact in both local list and Firebase
+                            existingContact.setName(name);
+                            existingContact.setNumber(number);
+                            databaseReference.child(existingContact.getId()).setValue(existingContact);
+                            adapter.notifyDataSetChanged();
+                        } else {
+
+                            String contactId = databaseReference.push().getKey();
+                        Contact_Model contact = new Contact_Model(contactId,name, number);
                         databaseReference.child(contactId).setValue(contact);
                         arrContact.add(contact);
                         adapter.notifyItemInserted(arrContact.size() - 1);
                         recyclerView.scrollToPosition(arrContact.size() - 1);
+                        }
                         // Save the contact information in SharedPreferences
                         SharedPreferences sharedPreferences = getSharedPreferences("MyContacts", Context.MODE_PRIVATE);
                         SharedPreferences.Editor editor = sharedPreferences.edit();

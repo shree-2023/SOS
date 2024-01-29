@@ -9,7 +9,6 @@
 //}
 // Contact_Model.java
 package com.example.sos2.model;
-import java.io.Serializable;
 //public class Contact_Model implements Serializable {
 //    private final String name;
 //    private final String number;
@@ -29,19 +28,27 @@ import java.io.Serializable;
 //}
 
 public class Contact_Model {
+    private String id;
     private String name;
     private String number;
 
-    public Contact_Model() {
+    public Contact_Model(String contactId, String name, String number) {
         // Default constructor with no arguments (required by Firebase)
     }
 
     public Contact_Model(String name, String number) {
+        this.id = id;
         this.name = name;
         this.number = number;
     }
 
     // Getters and setters for 'name' and 'number' fields
+    public String getId() {
+        return id;
+    }
+    public void setId(String id) {
+        this.id = id;
+    }
     public String getName() {
         return name;
     }
