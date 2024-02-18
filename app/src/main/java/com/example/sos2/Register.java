@@ -38,7 +38,6 @@ public class Register extends AppCompatActivity {
         btnLog=findViewById(R.id.textView2);
         auth = FirebaseAuth.getInstance();
 
-        hom=findViewById(R.id.button5);
         btnLog.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent inte = new Intent(Register.this, Contact.class);

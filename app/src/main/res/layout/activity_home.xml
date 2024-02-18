@@ -1,126 +1,134 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<ScrollView
-xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:app="http://schemas.android.com/apk/res-auto"
-xmlns:tools="http://schemas.android.com/tools"
-android:layout_width="match_parent"
-android:layout_height="match_parent"
-android:background="@drawable/bachome"
-tools:context=".Home">
-
-<LinearLayout
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:background="@drawable/imag12contactus"
+    android:textAlignment="center"
+    tools:context=".Home">
 
-    <TextView
+    <ImageButton
+        android:layout_width="60dp"
+        android:layout_height="40dp"
+        android:id="@+id/logout"
+        android:background="@drawable/logout"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.059" />
+
+    <ImageButton
+        android:id="@+id/sosbutton"
+        android:layout_width="212dp"
+        android:layout_height="178dp"
+        android:background="@drawable/contcatinfo"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.101"
+        tools:ignore="MissingConstraints,SpeakableTextPresentCheck" />
+
+    <ImageButton
+        android:id="@+id/pinfo"
+        android:layout_width="139dp"
+        android:layout_height="128dp"
+        android:background="@drawable/sos"
+        android:onClick="retrieve"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.172"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.525"
+        tools:ignore="OnClick,SpeakableTextPresentCheck" />
+
+    <ImageButton
+        android:id="@+id/settings"
+        android:layout_width="132dp"
+        android:layout_height="120dp"
+        android:background="@drawable/about"
+        android:tooltipText="More"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.87"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.782"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <ImageButton
+        android:id="@+id/voice"
+        android:layout_width="134dp"
+        android:layout_height="119dp"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/voicehome"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.187"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.77"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <ImageButton
+        android:id="@+id/safetrack"
+        android:background="@drawable/myplanes"
+        android:layout_width="135dp"
+        android:layout_height="130dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.88"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.524"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <EditText
+        android:id="@+id/editTextText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp"
-        android:fontFamily="sans-serif"
-        android:text="Welcome To VCEAS"
-        android:textColor="@color/white"
-        android:textSize="24sp" />
+        android:ems="10"
+        android:inputType="text"
+        android:minHeight="48dp"
+        android:text="Add Contact Details"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sosbutton"
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="411dp"
+        android:layout_height="43dp"
+        android:background="@color/light_blue_600"
+        android:text="Welcome to VCEAS"
+        android:textColor="#6A1B9A"
+        android:textColorLink="#BA1515"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteY="-2dp" />
+
+    <!--    <ImageButton-->
+<!--        android:id="@+id/logout"-->
+<!--        android:layout_width="58dp"-->
+<!--        android:layout_height="39dp"-->
+<!--        android:text="Button"-->
+<!--        tools:ignore="MissingConstraints"-->
+<!--        tools:layout_editor_absoluteX="351dp"-->
+<!--        tools:layout_editor_absoluteY="4dp" />-->
 
 
-
-    <GridLayout
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_gravity="center"
-        android:layout_margin="5dp"
-        android:alignmentMode="alignMargins"
-        android:columnCount="2"
-        android:orientation="horizontal"
-        android:rowCount="4">
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/addcontact"
-            android:layout_width="165dp"
-            android:layout_height="165dp"
-            android:layout_margin="10dp"
-            android:clickable="true"
-            app:cardBackgroundColor="@color/white"
-            app:cardCornerRadius="12dp"
-            app:cardElevation="5dp">
-
-            <ImageView
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="15dp"
-                android:src="@drawable/contact1" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="130dp"
-                android:fontFamily="sans-serif"
-                android:text="Contact"
-                android:textColor="@color/black"
-                android:textSize="18dp" />
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cardaboutus"
-            android:layout_width="165dp"
-            android:layout_height="165dp"
-            android:layout_margin="10dp"
-            android:clickable="true"
-            app:cardBackgroundColor="@color/white"
-            app:cardCornerRadius="12dp"
-            app:cardElevation="5dp">
-
-            <ImageView
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="15dp"
-                android:src="@drawable/about" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="130dp"
-                android:fontFamily="sans-serif"
-                android:text="Aboutus"
-                android:textColor="@color/black"
-                android:textSize="18dp" />
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cardContactus"
-            android:layout_width="165dp"
-            android:layout_height="165dp"
-            android:layout_margin="10dp"
-            android:clickable="true"
-            app:cardBackgroundColor="@color/white"
-            app:cardCornerRadius="12dp"
-            app:cardElevation="5dp">
-
-            <ImageView
-                android:layout_width="100dp"
-                android:layout_height="107dp"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="15dp"
-                android:src="@drawable/contactus" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="130dp"
-                android:fontFamily="sans-serif"
-                android:text="Contact Us"
-                android:textColor="@color/black"
-                android:textSize="18dp" />
-        </androidx.cardview.widget.CardView>
-
-    </GridLayout>
-
-
-</LinearLayout>
-</ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

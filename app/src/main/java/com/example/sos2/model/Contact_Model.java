@@ -1,43 +1,22 @@
-//package com.example.sos2;
-//
-//public class Contact_Model {
-//    String name,number;
-//    public Contact_Model(String name,String number){
-//        this.name=name;
-//        this.number=number;
-//    }
-//}
-// Contact_Model.java
 package com.example.sos2.model;
-//public class Contact_Model implements Serializable {
-//    private final String name;
-//    private final String number;
-//
-//    public Contact_Model(String name, String number) {
-//        this.name = name;
-//        this.number = number;
-//    }
-//
-//    public String getName() {
-//        return name;
-//    }
-//
-//    public String getNumber() {
-//        return number;
-//    }
-//}
 
 public class Contact_Model {
     private String id;
     private String name;
     private String number;
+    public Contact_Model() {
+        // Empty constructor
+    }
 
     public Contact_Model(String contactId, String name, String number) {
-        // Default constructor with no arguments (required by Firebase)
+        this.id = contactId;
+        this.name = name;
+        this.number = number;
+
     }
 
     public Contact_Model(String name, String number) {
-        this.id = id;
+        this.id = null;
         this.name = name;
         this.number = number;
     }
@@ -65,5 +44,4 @@ public class Contact_Model {
         this.number = number;
     }
 }
-
 

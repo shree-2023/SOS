@@ -1,13 +1,33 @@
 {
   "project_info": {
-    "project_number": "678144140168",
-    "project_id": "vceas-99d2f",
-    "storage_bucket": "vceas-99d2f.appspot.com"
+    "project_number": "428589469245",
+    "firebase_url": "https://sos2-9f3d1-default-rtdb.firebaseio.com",
+    "project_id": "sos2-9f3d1",
+    "storage_bucket": "sos2-9f3d1.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:678144140168:android:0c36f7fad3f17a9d89903d",
+        "mobilesdk_app_id": "1:428589469245:android:44b3e54ca172d81f056454",
+        "android_client_info": {
+          "package_name": "com.example.shree_mini_project"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDOXm6ltvhkvB2hNL8UjFEA5zM8ebdYA04"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:428589469245:android:19b07c2475b4d33d056454",
         "android_client_info": {
           "package_name": "com.example.sos2"
         }
@@ -15,7 +35,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyBoS3rUd9Nl9XAMzZu5170cE-sS4koyXn0"
+          "current_key": "AIzaSyDOXm6ltvhkvB2hNL8UjFEA5zM8ebdYA04"
         }
       ],
       "services": {

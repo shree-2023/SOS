@@ -31,4 +31,10 @@
         android:layout_centerInParent="true"
         android:indeterminateTint="@color/white" />
 
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView" />
+
 </RelativeLayout>

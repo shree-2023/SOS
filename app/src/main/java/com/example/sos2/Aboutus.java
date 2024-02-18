@@ -1,11 +1,14 @@
 package com.example.sos2;
 
-import androidx.appcompat.app.AppCompatActivity;
-import android.view.MenuItem;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
@@ -14,30 +17,22 @@ public class Aboutus extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-// Add this line in the onCreate method of Aboutus activity
-        setTheme(R.style.AppThemeWithActionBar);
+        setContentView(R.layout.activity_aboutus);
 
-        // Inflate the custom action bar layout
-        View customActionBarView = LayoutInflater.from(this).inflate(R.layout.activity_aboutus, null);
+
 
         // Set the custom action bar view
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-        actionBar.setCustomView(customActionBarView);
-        TextView actionBarIcon = customActionBarView.findViewById(R.id.actionBarIcon);
+        TextView backbtn;
+        backbtn=findViewById(R.id.actionBarIcon);
+        backbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(Aboutus.this, more.class);
+                startActivity(intent);
+            }
+        });
 
 
-        setContentView(R.layout.activity_aboutus);
     }
 
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                this.finish();
-                return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
 }

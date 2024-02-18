@@ -1,436 +1,172 @@
-//package com.example.sos2;
-//
-//import static androidx.core.location.LocationManagerCompat.getCurrentLocation;
-//
-//import androidx.appcompat.app.AppCompatActivity;
-//import android.content.Intent;
-//import android.os.Bundle;
-//import android.content.Context;
-//import android.content.SharedPreferences;
-//import android.telephony.SmsManager;
-//import android.util.Log;
-//import android.widget.Toast;
-//import android.widget.Button;
-//import android.view.View;
-//import java.util.ArrayList;
-//
-//public class SendVoicemsg extends AppCompatActivity {
-//    private ArrayList<Contact_Model> arrContact = new ArrayList<>();
-//
-//    @Override
-//    protected void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_send_voicemsg);
-//        // Retrieve saved contacts and send messages
-//        sendMessagesToSavedContacts();
-//
-//        Intent intent = getIntent();
-//        if (intent != null) {
-//            String contactName = intent.getStringExtra("CONTACT_NAME");
-//            String contactNumber = intent.getStringExtra("CONTACT_NUMBER");
-//
-//            // Now you have the contact information, you can use it to send a message
-//            // For example, you can use the contactNumber to send an SMS
-//            sendSmsWithLocation(contactNumber, "Your message content");
-//        } else {
-//            Toast.makeText(this, "No contact information received.", Toast.LENGTH_SHORT).show();
-//        }
-//
-//        // Add the button click listener
-//        Button GotoReg=findViewById(R.id.regbtn);
-//        GotoReg.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent i=new Intent(SendVoicemsg.this, Register.class);
-//                startActivity(i);
-//            }
-//        });
-//        Button sendmsg = findViewById(R.id.sendmsg);
-//        sendmsg.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                // Retrieve saved contacts and send messages
-//                sendMessagesToAllContacts();
-//            }
-//        });
-//    }
-//
-//    private void sendMessagesToSavedContacts() {
-//        // Retrieve saved contacts from SharedPreferences
-//        SharedPreferences sharedPreferences = getSharedPreferences("MyContacts", Context.MODE_PRIVATE);
-//        String savedContactNumber = sharedPreferences.getString("SAVED_CONTACT_NUMBER", null);
-//
-//        if (savedContactNumber != null) {
-//            // Send message to the saved contact
-//            sendSmsWithLocation(savedContactNumber, "Your message content");
-//
-//            // Clear the saved contact after sending the message
-//            SharedPreferences.Editor editor = sharedPreferences.edit();
-//            editor.remove("SAVED_CONTACT_NUMBER");
-//            editor.apply();
-//        }
-//    }
-//
-//    private void sendSmsWithLocation(String phoneNumber, String message) {
-//        try {
-//            LocationData locationData = getCurrentLocation();
-//            double latitude = locationData.getLatitude();
-//            double longitude = locationData.getLongitude();
-//
-//            String locationMessage = "My current location is: " + "Latitude = " + latitude + ", Longitude = " + longitude;
-//            message = message + "\n" + locationMessage;
-//
-//            SmsManager smsManager = SmsManager.getDefault();
-//            smsManager.sendTextMessage(phoneNumber, null, message, null, null);
-//        }
-//        catch (Exception e) {
-//            Toast.makeText(SendVoicemsg.this, "Failed to send message with location.", Toast.LENGTH_SHORT).show();
-//            e.printStackTrace();
-//        }
-//    }
-//
-//    private LocationData getCurrentLocation() {
-//        return new LocationData(37.7749, -122.4194, "TestPhoneNumber");
-//    }
-//
-//    private void sendMessagesToAllContacts() {
-//        if (arrContact.isEmpty()) { } else {
-//            //   requestPermissions(new String[]{Manifest.permission.SEND_SMS}, SMS_PERMISSION_REQUEST_CODE);
-//            // }
-//            Toast.makeText(SendVoicemsg.this, "No contacts to send messages to.", Toast.LENGTH_SHORT).show();
-//            return;
-//        }
-//
-//        String message = "Emergency.";
-//        for (Contact_Model contact : arrContact) {
-//            String phoneNumber = contact.getNumber();
-//            sendSmsWithLocation(phoneNumber, message);
-//        }
-//
-//        Log.d("Database", "Contacts sent to Firebase with location");
-//
-//        Toast.makeText(SendVoicemsg.this, "Messages sent to multiple contacts with location.", Toast.LENGTH_SHORT).show();
-//    }
-//}
-//package com.example.sos2;
-//
-//import android.Manifest;
-//import android.content.Context;
-//import android.content.Intent;
-//import android.content.SharedPreferences;
-//import android.content.pm.PackageManager;
-//import android.location.Location;
-//import android.location.LocationListener;
-//import android.location.LocationManager;
-//import android.os.Bundle;
-//import android.telephony.SmsManager;
-//import android.util.Log;
-//import android.view.View;
-//import android.widget.Button;
-//import android.widget.Toast;
-//
-//import androidx.appcompat.app.AppCompatActivity;
-//import androidx.core.app.ActivityCompat;
-//import androidx.core.content.ContextCompat;
-//
-//import java.util.ArrayList;
-//
-//public class SendVoicemsg extends AppCompatActivity {
-//    public ArrayList<Contact_Model> arrContact = new ArrayList<>();
-//
-//
-//
-//    @Override
-//    protected void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_send_voicemsg);
-//        Log.d("Array Type", "Type of arrContact: " + arrContact.getClass().getComponentType().getName());
-//    }
-//
-//        // Retrieve saved contacts and send messages
-//        sendMessagesToSavedContacts();
-//
-//        Intent intent = getIntent();
-//        if (intent != null) {
-//            String contactName = intent.getStringExtra("CONTACT_NAME");
-//            String contactNumber = intent.getStringExtra("CONTACT_NUMBER");
-//
-//            // Now you have the contact information, you can use it to send a message
-//            // For example, you can use the contactNumber to send an SMS
-//            sendSmsWithLocation(contactNumber, "Your message content");
-//        } else {
-//            Toast.makeText(this, "No contact information received.", Toast.LENGTH_SHORT).show();
-//        }
-//
-//        // Add the button click listener
-//        Button GotoReg = findViewById(R.id.regbtn);
-//        GotoReg.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent i = new Intent(SendVoicemsg.this, Register.class);
-//                startActivity(i);
-//            }
-//        });
-//
-//        Button sendmsg = findViewById(R.id.sendmsg);
-//        sendmsg.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                // Retrieve saved contacts and send messages
-//                sendMessagesToAllContacts();
-//            }
-//        });
-//    }
-//
-//    private void sendMessagesToSavedContacts() {
-//        // Retrieve saved contacts from SharedPreferences
-//        SharedPreferences sharedPreferences = getSharedPreferences("MyContacts", Context.MODE_PRIVATE);
-//        String savedContactNumber = sharedPreferences.getString("SAVED_CONTACT_NUMBER", null);
-//
-//        if (savedContactNumber != null) {
-//            // Send message to the saved contact
-//            sendSmsWithLocation(savedContactNumber, "Your message content");
-//
-//            // Clear the saved contact after sending the message
-//            SharedPreferences.Editor editor = sharedPreferences.edit();
-//            editor.remove("SAVED_CONTACT_NUMBER");
-//            editor.apply();
-//        }
-//    }
-//
-//    private void sendSmsWithLocation(String phoneNumber, String originalMessage) {
-//        try {
-//            final String[] message = {originalMessage}; // Declare as a final array
-//
-//            // Get the location manager
-//            LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-//
-//            // Check for location permission
-//            if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
-//                    == PackageManager.PERMISSION_GRANTED) {
-//                // Request location updates
-//                locationManager.requestLocationUpdates(
-//                        LocationManager.GPS_PROVIDER,
-//                        0,
-//                        0,
-//                        new LocationListener() {
-//                            @Override
-//                            public void onLocationChanged(Location location) {
-//                                // Get latitude and longitude
-//                                double latitude = location.getLatitude();
-//                                double longitude = location.getLongitude();
-//
-//                                // Create location message
-//                                String locationMessage = "My current location is: " +
-//                                        "Latitude = " + latitude + ", Longitude = " + longitude;
-//
-//                                // Append location message to the original message
-//                                message[0] = message[0] + "\n" + locationMessage;
-//
-//                                // Send SMS
-//                                SmsManager smsManager = SmsManager.getDefault();
-//                                smsManager.sendTextMessage(phoneNumber, null, message[0], null, null);
-//
-//                                // Remove location updates after sending the message (optional)
-//                                locationManager.removeUpdates(this);
-//                            }
-//
-//                            @Override
-//                            public void onStatusChanged(String provider, int status, Bundle extras) {
-//                            }
-//
-//                            @Override
-//                            public void onProviderEnabled(String provider) {
-//                            }
-//
-//                            @Override
-//                            public void onProviderDisabled(String provider) {
-//                            }
-//                        }
-//                );
-//            } else {
-//                // Handle the case when location permission is not granted
-//                Toast.makeText(SendVoicemsg.this, "Location permission not granted.", Toast.LENGTH_SHORT).show();
-//            }
-//        } catch (Exception e) {
-//            Toast.makeText(SendVoicemsg.this, "Failed to send message with location.", Toast.LENGTH_SHORT).show();
-//            e.printStackTrace();
-//        }
-//    }
-//
-//    private void sendMessagesToAllContacts() {
-//        if (arrContact.isEmpty()) {
-//            // Handle the case when there are no contacts
-//            Toast.makeText(SendVoicemsg.this, "No contacts to send messages to.", Toast.LENGTH_SHORT).show();
-//            return;
-//        }
-//
-//        String message = "Emergency.";
-//        for (Contact_Model contact : arrContact) {
-//            String phoneNumber = contact.getNumber();
-//            sendSmsWithLocation(phoneNumber, message);
-//        }
-//
-//        Log.d("Database", "Contacts sent to Firebase with location");
-//
-//        Toast.makeText(SendVoicemsg.this, "Messages sent to multiple contacts with location.", Toast.LENGTH_SHORT).show();
-//    }
-//}
-
 package com.example.sos2;
 
-import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.os.Bundle;
+import android.speech.RecognizerIntent;
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+
+import android.telephony.SmsManager;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
-import android.os.Bundle;
-import android.telephony.SmsManager;
-import android.util.Log;
-import android.view.View;
-import android.widget.Button;
-import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
+import java.util.HashMap;
 
-import com.example.sos2.model.Contact_Model;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class SendVoicemsg extends AppCompatActivity {
-    private ArrayList<Contact_Model> arrContact = new ArrayList<>();
+
+    private static final int REQUEST_CODE_SPEECH = 1;
+    private static final String EMERGENCY_MESSAGE = "Emergency! Help needed.";
+
+    private DatabaseReference databaseReference;
+    private static final String EMERGENCY_PHONE_NUMBER = "9964300914";  // Specify the desired emergency number
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_send_voicemsg);
-        // Retrieve saved contacts and send messages
-        sendMessagesToSavedContacts();
+        setContentView(R.layout.activity_main);
+        databaseReference = FirebaseDatabase.getInstance().getReference("contacts");
+        voiceAutomation();
+    }
 
-        Intent intent = getIntent();
-        if (intent != null) {
-            String contactName = intent.getStringExtra("CONTACT_NAME");
-            String contactNumber = intent.getStringExtra("CONTACT_NUMBER");
-
-            // Now you have the contact information, you can use it to send a message
-            // For example, you can use the contactNumber to send an SMS
-            sendSmsWithLocation(contactNumber, "Your message content");
+    private void voiceAutomation() {
+        // Check if the app has the RECORD_AUDIO permission
+        if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_GRANTED) {
+            // Permission granted, proceed with voice recognition
+            startVoiceRecognition();
         } else {
-            Toast.makeText(this, "No contact information received.", Toast.LENGTH_SHORT).show();
+            // Request the RECORD_AUDIO permission
+            ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.RECORD_AUDIO}, REQUEST_CODE_SPEECH);
         }
+    }
 
-        // Add the button click listener
-        Button GotoReg = findViewById(R.id.regbtn);
-        GotoReg.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(SendVoicemsg.this, Register.class);
-                startActivity(i);
+    private void startVoiceRecognition() {
+        Intent voice = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+        voice.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+        voice.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault());
+        voice.putExtra(RecognizerIntent.EXTRA_PROMPT, "Help...");
+        startActivityForResult(voice, REQUEST_CODE_SPEECH);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_CODE_SPEECH && resultCode == RESULT_OK && data != null) {
+            ArrayList<String> arrayList = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
+            if (!arrayList.isEmpty() && arrayList.get(0).equalsIgnoreCase("help")) {
+                startLocationUpdates();
             }
-        });
+        }
+    }
 
-        Button sendmsg = findViewById(R.id.sendmsg);
-        sendmsg.setOnClickListener(new View.OnClickListener() {
+
+//    private void sendEmergencySMSToSavedContacts() {
+//        // Request location updates
+//        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+//            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_CODE_LOCATION_PERMISSION);
+//        } else {
+//            startLocationUpdates();
+//        }
+//    }
+
+    private void startLocationUpdates() {
+        LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+
+        LocationListener locationListener = new LocationListener() {
             @Override
-            public void onClick(View v) {
-                // Retrieve saved contacts and send messages
-                sendMessagesToAllContacts();
+            public void onLocationChanged(Location location) {
+                // Once the location is changed, send the SMS with the updated location
+                String currentLocation = "Latitude: " + location.getLatitude() + ", Longitude: " + location.getLongitude();
+                String messageWithLocation = EMERGENCY_MESSAGE + "\nCurrent Location: " + currentLocation;
+                String locationLink = getLocationLink(location.getLatitude(), location.getLongitude());
+                messageWithLocation += "\nLocation Link: " + locationLink;
+                sendEmergencySMSToSavedContacts(messageWithLocation);
+
+                // Remove updates to conserve battery
+                locationManager.removeUpdates(this);
+            }
+
+            @Override
+            public void onStatusChanged(String provider, int status, Bundle extras) {
+            }
+
+            @Override
+            public void onProviderEnabled(String provider) {
+            }
+
+            @Override
+            public void onProviderDisabled(String provider) {
+            }
+        };
+
+        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return;
+        }
+        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
+    }
+
+    private void sendEmergencySMSToSavedContacts(String message) {
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    // Retrieve the value as a HashMap
+                    HashMap<String, Object> contactData = (HashMap<String, Object>) snapshot.getValue();
+
+                    // Extract the phone number from the HashMap
+                    if (contactData != null && contactData.containsKey("number")) {
+                        String phoneNumber = (String) contactData.get("number");
+                        sendSMS(message, phoneNumber);
+                    }
+                }
+                Toast.makeText(SendVoicemsg.this, "Emergency message sent to all saved contacts", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Toast.makeText(SendVoicemsg.this, "Failed to retrieve contacts. Error: " + databaseError.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }
 
-    private void sendMessagesToSavedContacts() {
-        // Retrieve saved contacts from SharedPreferences
-        SharedPreferences sharedPreferences = getSharedPreferences("MyContacts", Context.MODE_PRIVATE);
-        String savedContactNumber = sharedPreferences.getString("SAVED_CONTACT_NUMBER", null);
-
-        if (savedContactNumber != null) {
-            // Send message to the saved contact
-            sendSmsWithLocation(savedContactNumber, "Your message content");
-
-            // Clear the saved contact after sending the message
-            SharedPreferences.Editor editor = sharedPreferences.edit();
-            editor.remove("SAVED_CONTACT_NUMBER");
-            editor.apply();
-        }
-    }
-
-    private void sendSmsWithLocation(String phoneNumber, String originalMessage) {
+    private void sendSMS(String message, String phoneNumber) {
         try {
-            final String[] message = {originalMessage}; // Declare as a final array
-
-            // Get the location manager
-            LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-
-            // Check for location permission
-            if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
-                    == PackageManager.PERMISSION_GRANTED) {
-                // Request location updates
-                locationManager.requestLocationUpdates(
-                        LocationManager.GPS_PROVIDER,
-                        0,
-                        0,
-                        new LocationListener() {
-                            @Override
-                            public void onLocationChanged(Location location) {
-                                // Get latitude and longitude
-                                double latitude = location.getLatitude();
-                                double longitude = location.getLongitude();
-
-                                // Create location message
-                                String locationMessage = "My current location is: " +
-                                        "Latitude = " + latitude + ", Longitude = " + longitude;
-
-                                // Append location message to the original message
-                                message[0] = message[0] + "\n" + locationMessage;
-
-                                // Send SMS
-                                SmsManager smsManager = SmsManager.getDefault();
-                                smsManager.sendTextMessage(phoneNumber, null, message[0], null, null);
-
-                                // Remove location updates after sending the message (optional)
-                                locationManager.removeUpdates(this);
-                            }
-
-                            @Override
-                            public void onStatusChanged(String provider, int status, Bundle extras) {
-                            }
-
-                            @Override
-                            public void onProviderEnabled(String provider) {
-                            }
-
-                            @Override
-                            public void onProviderDisabled(String provider) {
-                            }
-                        }
-                );
-            }
+            SmsManager smsManager = SmsManager.getDefault();
+            smsManager.sendTextMessage(phoneNumber, null, message, null, null);
         } catch (Exception e) {
-            Toast.makeText(SendVoicemsg.this, "Failed to send message with location.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Failed to send emergency message to " + phoneNumber, Toast.LENGTH_SHORT).show();
             e.printStackTrace();
         }
     }
 
-    private void sendMessagesToAllContacts() {
-        if (arrContact.isEmpty()) {
-            // Handle the case when there are no contacts
-            Toast.makeText(SendVoicemsg.this, "No contacts to send messages to.", Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        String message = "Emergency.";
-        for (Contact_Model contact : arrContact) {
-            String phoneNumber = contact.getNumber();
-            sendSmsWithLocation(phoneNumber, message);
-        }
-
-        Log.d("Database", "Contacts sent to Firebase with location");
-
-        Toast.makeText(SendVoicemsg.this, "Messages sent to multiple contacts with location.", Toast.LENGTH_SHORT).show();
+    private String getLocationLink(double latitude, double longitude) {
+        return "http://maps.google.com/maps?q=loc:" + latitude + "," + longitude;
     }
+
+    // Define the request code for location permission
+    private static final int REQUEST_CODE_LOCATION_PERMISSION = 123;
+
 }
