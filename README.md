@@ -8,10 +8,12 @@ By emphasizing user safety and harnessing state-of-the-art technology, the safet
 solutions tailored for Android users. It delivers a holistic yet user-friendly platform that empowers individuals to confront emergencies with confidence and assurance,
 ultimately fostering a safer and more secure societal environment.
 
-![image](https://github.com/user-attachments/assets/8b5c9a50-4a51-4788-a30a-7f15d06e858e)           ![image](https://github.com/user-attachments/assets/97e7c8f3-abf5-4058-af38-0e93906e1906)
-![image](https://github.com/user-attachments/assets/fe74dcd4-d8ef-4a76-8dbf-74d5d01e6b1f)           ![image](https://github.com/user-attachments/assets/56207dd7-f5b2-4f3a-a01f-72a0df2d9ec1)
-![image](https://github.com/user-attachments/assets/f5b5c998-a21f-485e-95ab-da942bd99c2b)           ![image](https://github.com/user-attachments/assets/683abd72-7929-4743-b509-fd8c399f4059)
-![image](https://github.com/user-attachments/assets/c471274c-92e2-44f1-8b33-6959fbbda4ba)           ![image](https://github.com/user-attachments/assets/8b946731-dd4b-462a-80c4-d51d0ec59a72)
+![image](https://github.com/user-attachments/assets/8b5c9a50-4a51-4788-a30a-7f15d06e858e)            ![image](https://github.com/user-attachments/assets/97e7c8f3-abf5-4058-af38-0e93906e1906)
+![image](https://github.com/user-attachments/assets/fe74dcd4-d8ef-4a76-8dbf-74d5d01e6b1f)            ![image](https://github.com/user-attachments/assets/56207dd7-f5b2-4f3a-a01f-72a0df2d9ec1)
+![image](https://github.com/user-attachments/assets/f5b5c998-a21f-485e-95ab-da942bd99c2b)          
+![image](https://github.com/user-attachments/assets/683abd72-7929-4743-b509-fd8c399f4059)
+![image](https://github.com/user-attachments/assets/c471274c-92e2-44f1-8b33-6959fbbda4ba)          
+![image](https://github.com/user-attachments/assets/8b946731-dd4b-462a-80c4-d51d0ec59a72)
 
 
 
